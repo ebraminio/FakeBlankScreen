@@ -11,6 +11,7 @@
 
 package net.tlfoxhuman.fakeblankscreen
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -84,7 +85,7 @@ class FBSTileService : TileService() {
         if (Build.VERSION.SDK_INT >= 34) {
             val pIntent = PendingIntent.getActivity(context,0,intent, PendingIntent.FLAG_IMMUTABLE)
             startActivityAndCollapse(pIntent)
-        } else {
+        } else if (Build.VERSION.SDK_INT < 34 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             startActivityAndCollapse(intent)
         }
     }
